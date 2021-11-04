@@ -5,10 +5,10 @@ import { defineFlowStep } from "@app/modules/flow/definition";
 import { useFlowControl, useFlowData } from "@app/modules/flow/hooks";
 
 import { fromWei } from "@app/utils/bn/wei";
-import { getBalance, getTokenContract } from "@app/web3/api/bounce/erc";
+import { getBalance, getEthBalance, getTokenContract } from "@app/web3/api/bounce/erc";
 
 import { useTokenSearch } from "@app/web3/api/tokens";
-import { useWeb3Provider } from "@app/web3/hooks/use-web3";
+import { useWeb3, useWeb3Provider } from "@app/web3/hooks/use-web3";
 
 import { ALLOCATION_TYPE, FixedView } from "./FixedView";
 
@@ -28,6 +28,7 @@ export type FixedOutType = {
 const FixedImp = () => {
 	const { moveForward, addData, data } = useFlowControl<FixedOutType>();
 	const { tokenFrom } = useFlowData<FixedInType>();
+	const web3 = useWeb3();
 	const initialValues = useMemo(
 		() => ({ allocation: "limited", ...data.fixedFormValues, tokenFrom }),
 		[data.fixedFormValues, tokenFrom]
@@ -43,9 +44,23 @@ const FixedImp = () => {
 	const tokenContract = getTokenContract(provider, findToken(tokenFrom).address);
 
 	useEffect(() => {
-		getBalance(tokenContract, account).then((b) =>
-			setBalance(parseFloat(fromWei(b, findToken(tokenFrom).decimals).toFixed(6, 1)))
-		);
+		if (tokenFrom === "0x0000000000000000000000000000000000000000") {
+			getEthBalance(web3, account)
+				.then((b) =>
+					setBalance(parseFloat(fromWei(b, findToken(tokenFrom).decimals).toFixed(6, 1)))
+				)
+				.catch((error) => {
+					console.log("getEthBalance error: ", error);
+				});
+		} else {
+			getBalance(tokenContract, account)
+				.then((b) =>
+					setBalance(parseFloat(fromWei(b, findToken(tokenFrom).decimals).toFixed(6, 1)))
+				)
+				.catch((error) => {
+					console.log("getEthBalance error: ", error);
+				});
+		}
 	}, [tokenContract, account, findToken, tokenFrom]);
 
 	const onSubmit = async (values: any) => {

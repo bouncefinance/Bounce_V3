@@ -1,7 +1,11 @@
+import { setTimeout } from "timers";
+
 import { useWeb3React } from "@web3-react/core";
 import classNames from "classnames";
 
 import React, { useCallback, useEffect, useState } from "react";
+
+import Web3 from "web3";
 
 import { ACCOUNT_PATH } from "@app/const/const";
 import { MaybeWithClassName } from "@app/helper/react/types";
@@ -22,10 +26,6 @@ import { WEB3_NETWORKS } from "@app/web3/networks/const";
 import styles from "./UserInfo.module.scss";
 
 import type { FC } from "react";
-import Web3 from "web3";
-import { setTimeout } from "timers";
-
-
 
 type UserInfoType = {
 	balance: string;
@@ -83,81 +83,79 @@ export const UserInfoView: FC<ComponentType> = ({
 
 // Select Chain Options
 interface ISelectChain {
-	currentChain: number
+	currentChain: number;
 }
 
 interface IChainConfig {
-	chainId: number
-	name: string
-	fullName: string
-	icon: any
-	isHidden?: Boolean,
-	config?: any
+	chainId: number;
+	name: string;
+	fullName: string;
+	icon: any;
+	isHidden?: Boolean;
+	config?: any;
 }
 
 const chainConfig: IChainConfig[] = [
 	{
 		chainId: 1,
-		name: 'ETH',
-		fullName: 'Ethereum',
-		icon: require('./assets/chain-eth.svg'),
+		name: "ETH",
+		fullName: "Ethereum",
+		icon: require("./assets/chain-eth.svg"),
 		config: {
-			chainId: '0x1',
-			chainName: 'Ethereum Chain Mainnet',
+			chainId: "0x1",
+			chainName: "Ethereum Chain Mainnet",
 			nativeCurrency: {
-				name: 'Ethereum',
-				symbol: 'ETH',
+				name: "Ethereum",
+				symbol: "ETH",
 				decimals: 18,
 			},
-			rpcUrls: [
-				'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
-			],
-			blockExplorerUrls: [
-				'https://etherscan.io/'
-			],
-		}
-	}, {
-		chainId: 56,
-		name: 'BSC',
-		fullName: 'Binance Smart Chain',
-		icon: require('./assets/chain-bsc.svg'),
-		config: {
-			chainId: '0x38',
-			chainName: 'Binance Smart Chain Mainnet',
-			nativeCurrency: {
-				name: 'Binance',
-				symbol: 'BNB',
-				decimals: 18,
-			},
-			rpcUrls: ['https://bsc-dataseed4.binance.org'],
-			blockExplorerUrls: [
-				'https://bscscan.com/'
-			],
-		}
-	}, {
-		chainId: 128,
-		name: 'HECO',
-		fullName: 'HECO',
-		icon: require('./assets/chain-heco.svg'),
-		isHidden: true
-	}, {
-		chainId: 56,
-		name: 'Polygon',
-		fullName: 'Polygon',
-		icon: require('./assets/chain-polygon.svg'),
-		isHidden: true
-	}, {
-		chainId: 0,
-		name: 'Fantom',
-		fullName: 'Fantom',
-		icon: require('./assets/chain-layer2.svg'),
-		isHidden: true
+			rpcUrls: ["https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"],
+			blockExplorerUrls: ["https://etherscan.io/"],
+		},
 	},
-]
+	{
+		chainId: 56,
+		name: "BSC",
+		fullName: "Binance Smart Chain",
+		icon: require("./assets/chain-bsc.svg"),
+		config: {
+			chainId: "0x38",
+			chainName: "Binance Smart Chain Mainnet",
+			nativeCurrency: {
+				name: "Binance",
+				symbol: "BNB",
+				decimals: 18,
+			},
+			rpcUrls: ["https://bsc-dataseed4.binance.org"],
+			blockExplorerUrls: ["https://bscscan.com/"],
+		},
+	},
+	{
+		chainId: 128,
+		name: "HECO",
+		fullName: "HECO",
+		icon: require("./assets/chain-heco.svg"),
+		isHidden: true,
+	},
+	{
+		chainId: 56,
+		name: "Polygon",
+		fullName: "Polygon",
+		icon: require("./assets/chain-polygon.svg"),
+		isHidden: true,
+	},
+	{
+		chainId: 0,
+		name: "Fantom",
+		fullName: "Fantom",
+		icon: require("./assets/chain-layer2.svg"),
+		isHidden: true,
+	},
+];
 
 export const SelectChain: FC<ISelectChain> = ({ currentChain }) => {
-	const [active, setActive] = useState(false)
-	const curChain = chainConfig.find(item => item.chainId === currentChain)
+	const [active, setActive] = useState(false);
+	const curChain = chainConfig.find((item) => item.chainId === currentChain);
 
 	const handelChangeChain = async (tarChain: IChainConfig) => {
 		const provider = Web3.givenProvider;
@@ -166,8 +164,8 @@ export const SelectChain: FC<ISelectChain> = ({ currentChain }) => {
 			try {
 				await provider
 					.request({
-						method: 'wallet_switchEthereumChain',
-						params: [{ chainId: `0x${parseInt(tarChain.chainId + '', 16)}` }],
+						method: "wallet_switchEthereumChain",
+						params: [{ chainId: `0x${parseInt(tarChain.chainId + "", 16)}` }],
 					})
 					.then(() => {
 						window.location.reload();
@@ -178,10 +176,8 @@ export const SelectChain: FC<ISelectChain> = ({ currentChain }) => {
 					try {
 						await provider
 							.request({
-								method: 'wallet_addEthereumChain',
-								params: [
-									tarChain.config
-								],
+								method: "wallet_addEthereumChain",
+								params: [tarChain.config],
 							})
 							.then(() => {
 								window.location.reload();
@@ -197,40 +193,55 @@ export const SelectChain: FC<ISelectChain> = ({ currentChain }) => {
 		} else {
 			return false;
 		}
-	}
+	};
 
-	return <div>
-		<div className={styles.currentChain} onClick={() => {
-			setActive(!active)
-		}}>
-			<img src={curChain?.icon || require('./assets/chain-eth.svg')} alt="" />
-			<span>{curChain?.name || 'ErrorChain'}</span>
-			<img className={styles.arrow} src={require('./assets/arrow-down.svg')} alt="" />
+	return (
+		<div>
+			<div
+				className={styles.currentChain}
+				onClick={() => {
+					setActive(!active);
+				}}
+			>
+				<img src={curChain?.icon || require("./assets/chain-eth.svg")} alt="" />
+				<span>{curChain?.name || "ErrorChain"}</span>
+				<img className={styles.arrow} src={require("./assets/arrow-down.svg")} alt="" />
+			</div>
+
+			{active && (
+				<ul
+					className={styles.selectOption}
+					onMouseLeave={() => {
+						setTimeout(() => {
+							setActive(false);
+						}, 300);
+					}}
+				>
+					{chainConfig
+						.filter((item) => !item.isHidden)
+						.map((item) => {
+							return (
+								// eslint-disable-next-line
+								<li
+									key={item.chainId}
+									onClick={() => {
+										if (curChain?.chainId !== item.chainId) {
+											handelChangeChain(item);
+										}
+									}}
+								>
+									<div className={styles.imgBox}>
+										<img src={item.icon} alt="" />
+									</div>
+									<span>{item.fullName}</span>
+								</li>
+							);
+						})}
+				</ul>
+			)}
 		</div>
-
-		{active && <ul
-			className={styles.selectOption}
-			onMouseLeave={() => {
-				setTimeout(() => {
-					setActive(false)
-				}, 300)
-			}}>
-			{chainConfig.filter(item => !item.isHidden).map(item => {
-				// eslint-disable-next-line
-				return <li key={item.chainId} onClick={() => {
-					if (curChain?.chainId !== item.chainId) {
-						handelChangeChain(item)
-					}
-				}}>
-					<div className={styles.imgBox}>
-						<img src={item.icon} alt="" />
-					</div>
-					<span>{item.fullName}</span>
-				</li>
-			})}
-		</ul>}
-	</div>
-}
+	);
+};
 
 export const UserInfo = () => {
 	const [balance, setBalance] = useState("0");
