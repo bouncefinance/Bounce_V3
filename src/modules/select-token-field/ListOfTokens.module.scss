@@ -1,53 +1,87 @@
 .component {
-  display: grid;
-  grid-template-rows: auto 1fr 3.75rem;
+	display: grid;
+	grid-template-rows: auto auto 1fr 3.75rem;
+	grid-template-areas: "search" "searchResult" "customList" "footer";
 
-  height: calc(100% - var(--spacing-unit) * 4.5);
+	height: calc(100% - var(--spacing-unit) * 4.5);
 
-  margin-top: calc(var(--spacing-unit) * 4.5);
-  padding: 0 calc(var(--spacing-unit) * 5);
+	margin-top: calc(var(--spacing-unit) * 4.5);
+	padding: 0 calc(var(--spacing-unit) * 5);
 }
 
 .scroll {
-  position: relative;
+	position: relative;
 
-  height: calc(100% - var(--spacing-unit) * 4.5 - var(--spacing-unit) * 3.75);
-  margin-top: calc(var(--spacing-unit) * 4.5);
-  margin-bottom: calc(var(--spacing-unit) * 3.75);
+	height: calc(100% - var(--spacing-unit) * 4.5 - var(--spacing-unit) * 3.75);
+	margin-top: calc(var(--spacing-unit) * 4.5);
+	margin-bottom: calc(var(--spacing-unit) * 3.75);
 
-  overflow: hidden;
+	overflow: hidden;
 }
 
 .list {
-  position: relative;
+	position: relative;
 
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 
-  list-style: none;
+	list-style: none;
 }
 
 .item {
-  position: absolute;
-  left: 0;
-  right: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
 }
 
 .footer {
-  position: relative;
+	grid-area: footer;
+	position: relative;
 
-  display: grid;
-  place-content: center;
+	display: grid;
+	place-content: center;
 }
 
 .footer::before {
-  position: absolute;
-  left: calc(var(--spacing-unit) * -5);
-  right: calc(var(--spacing-unit) * -5);
-  content: "";
+	position: absolute;
+	left: calc(var(--spacing-unit) * -5);
+	right: calc(var(--spacing-unit) * -5);
+	content: "";
 
-  display: block;
-  height: 1px;
+	display: block;
+	height: 1px;
 
-  background-color: rgba(var(--primary-black), 0.1);
+	background-color: rgba(var(--primary-black), 0.1);
+}
+
+.blackSpinner {
+	margin: calc(var(--spacing-unit) * 4) auto;
+
+	border-left: 1px solid transparent !important;
+	border-top: 1px solid rgba(var(--primary-black), 1) !important;
+	border-right: 1px solid rgba(var(--primary-black), 1) !important;
+	border-bottom: 1px solid rgba(var(--primary-black), 1) !important;
+}
+
+.searchResult {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	background: #e4e4e4;
+	border-radius: 8px;
+	padding: 8px 20px 9px 19px;
+
+	margin-top: calc(var(--spacing-unit) * 1.75);
+}
+
+.currency {
+	display: flex;
+	align-items: center;
+	column-gap: calc(var(--spacing-unit) * 0.75);
+}
+
+.importBtn {
+	padding: 9px 16px 10px;
+	min-height: 32px;
 }

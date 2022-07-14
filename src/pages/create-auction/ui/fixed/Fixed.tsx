@@ -43,9 +43,11 @@ const FixedImp = () => {
 	const tokenContract = getTokenContract(provider, findToken(tokenFrom).address);
 
 	useEffect(() => {
-		getBalance(tokenContract, account).then((b) =>
-			setBalance(parseFloat(fromWei(b, findToken(tokenFrom).decimals).toFixed(6, 1)))
-		);
+		getBalance(tokenContract, account)
+			.then((b) => setBalance(parseFloat(fromWei(b, findToken(tokenFrom).decimals).toFixed(6, 1))))
+			.catch((error) => {
+				console.log("getBalance error: ", error);
+			});
 	}, [tokenContract, account, findToken, tokenFrom]);
 
 	const onSubmit = async (values: any) => {
@@ -54,7 +56,7 @@ const FixedImp = () => {
 			swapRatio: parseFloat(values.swapRatio),
 			amount: parseFloat(values.amount),
 			allocation: values.allocation,
-			limit: parseFloat(values.limit),
+			limit: values.allocation === "limited" ? parseFloat(values.limit) : 0,
 			fixedFormValues: values,
 		});
 

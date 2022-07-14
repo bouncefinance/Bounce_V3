@@ -42,14 +42,14 @@ export const ProvideAdvancedSettingsForAuction: FC<
 	const [blockWidth, setBlockWidth] = useState(0);
 	useResizeObserver(blockRef, (ref) => setBlockWidth(ref.clientWidth));
 
-	const validate = useCallback<FormValidator<"startPool" | "endPool" | "claimStart">>((values) => {
+	const validate = useCallback((values) => {
 		if (values.endPool < values.startPool) {
 			return {
 				endPool: "Should be after Start Time",
 			};
 		}
 
-		if (values.claimStart < values.endPool) {
+		if (values?.delayToken?.[0] === "unlock" && values.claimStart < values.endPool) {
 			return {
 				endPool: "Should be after End Time",
 			};
@@ -73,7 +73,7 @@ export const ProvideAdvancedSettingsForAuction: FC<
 					<FormSpy subscription={{ values: true }}>
 						{(props) => (
 							<>
-								<Label Component="div" label="Start Time">
+								<Label Component="div" label="Start Time (Local Time)">
 									<DateField
 										placeholder="10.01.2021"
 										name="startPool"
@@ -89,7 +89,7 @@ export const ProvideAdvancedSettingsForAuction: FC<
 									/>
 								</Label>
 
-								<Label Component="div" label="End Time">
+								<Label Component="div" label="End Time (Local Time)">
 									<DateField
 										placeholder="10.01.2021"
 										name="endPool"
@@ -115,7 +115,7 @@ export const ProvideAdvancedSettingsForAuction: FC<
 					<>
 						<Label
 							Component="div"
-							label="Delay Unlocking Token"
+							label="Delay Unlocking Token (Local Time)"
 							tooltip="Set a date so traders can only claim tokens by that time."
 							after={<OnOffField name="delayToken" value="unlock" />}
 						>

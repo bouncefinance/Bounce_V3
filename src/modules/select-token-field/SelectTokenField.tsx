@@ -16,6 +16,8 @@ type SelectTokenFieldType = {
 	readOnly?: boolean;
 	required?: boolean;
 	filter?(token: TokenInfo): boolean;
+	showArrow?: boolean;
+	noManage?: boolean;
 };
 
 export const SelectTokenField: FC<SelectTokenFieldType & MaybeWithClassName> = ({
@@ -26,6 +28,8 @@ export const SelectTokenField: FC<SelectTokenFieldType & MaybeWithClassName> = (
 	value,
 	required,
 	filter,
+	showArrow,
+	noManage,
 }) => {
 	return (
 		<Field name={name} value={value} validate={required ? isRequired : undefined}>
@@ -33,7 +37,7 @@ export const SelectTokenField: FC<SelectTokenFieldType & MaybeWithClassName> = (
 				<SelectToken
 					className={className}
 					name={input.name}
-					value={input.value}
+					value={String(input.value).toLowerCase()}
 					onChange={input.onChange}
 					onBlur={input.onBlur}
 					filter={filter}
@@ -41,6 +45,8 @@ export const SelectTokenField: FC<SelectTokenFieldType & MaybeWithClassName> = (
 					readOnly={readOnly}
 					required={required}
 					error={(meta.error && meta.touched ? meta.error : undefined) || meta.submitError}
+					showArrow={showArrow}
+					noManage={noManage}
 				/>
 			)}
 		</Field>

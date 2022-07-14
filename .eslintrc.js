@@ -29,63 +29,6 @@ module.exports = {
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"jsx-a11y/no-autofocus": "off",
 
-		// normal rules
-		"import/order": [
-			"error",
-			{
-				"newlines-between": "always-and-inside-groups",
-				alphabetize: {
-					order: "asc",
-				},
-				groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
-			},
-		],
-		"padding-line-between-statements": [
-			"error",
-			// IMPORT
-			{
-				blankLine: "always",
-				prev: "import",
-				next: "*",
-			},
-			{
-				blankLine: "any",
-				prev: "import",
-				next: "import",
-			},
-			// EXPORT
-			{
-				blankLine: "always",
-				prev: "*",
-				next: "export",
-			},
-			{
-				blankLine: "any",
-				prev: "export",
-				next: "export",
-			},
-			{
-				blankLine: "always",
-				prev: "*",
-				next: ["const", "let"],
-			},
-			{
-				blankLine: "any",
-				prev: ["const", "let"],
-				next: ["const", "let"],
-			},
-			// BLOCKS
-			{
-				blankLine: "always",
-				prev: ["block", "block-like", "class", "function", "multiline-expression"],
-				next: "*",
-			},
-			{
-				blankLine: "always",
-				prev: "*",
-				next: ["block", "block-like", "class", "function", "return", "multiline-expression"],
-			},
-		],
 		"prettier/prettier": ["error", {}, { usePrettierrc: true }],
 		"react/prop-types": "off",
 		"react/react-in-jsx-scope": "off",

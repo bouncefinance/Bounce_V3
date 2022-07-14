@@ -14,17 +14,17 @@ const AuctionViewPage = pageWithLayout(
 		} = useRouter();
 
 		return (
-			<NoSsr>
-				<RequireConnectedWallet>
-					<AuctionDetail poolID={+poolID} auctionType={auctionType as POOL_TYPE} />
-				</RequireConnectedWallet>
-			</NoSsr>
+			<RequireConnectedWallet>
+				<AuctionDetail poolID={+poolID} auctionType={auctionType as POOL_TYPE} />
+			</RequireConnectedWallet>
 		);
 	},
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

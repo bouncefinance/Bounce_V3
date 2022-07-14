@@ -50,9 +50,15 @@ const TokenImp = () => {
 	};
 
 	const getLinkByNetwork = defineNetworkMapper({
-		[WEB3_NETWORKS.MAIN]: `https://mainnet.etherscan.io/address/${address}`,
+		[WEB3_NETWORKS.ETH]: `https://mainnet.etherscan.io/address/${address}`,
 		[WEB3_NETWORKS.RINKEBY]: `https://rinkeby.etherscan.io/address/${address}`,
-		[WEB3_NETWORKS.BINANCE]: `https://rinkeby.etherscan.io/address/${address}`,
+		[WEB3_NETWORKS.BINANCE]: `https://bscscan.com/address/${address}`,
+		[WEB3_NETWORKS.POLYGON]: `https://polygonscan.com/address/${address}`,
+		[WEB3_NETWORKS.ARBITRUM]: `https://arbiscan.io/address/${address}`,
+		[WEB3_NETWORKS.FANTOM]: `https://ftmscan.com/address/${address}`,
+		[WEB3_NETWORKS.SYSCOIN]: `https://explorer.syscoin.org/address/${address}`,
+		// [WEB3_NETWORKS.SyscoinTestnet]: `https://tanenbaum.io/address/${address}`,
+		// [WEB3_NETWORKS.AVALANCHE]: `https://snowtrace.io/address/${address}`,
 	});
 
 	return (

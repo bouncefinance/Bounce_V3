@@ -2,31 +2,41 @@
 @use "../helper/style/media";
 
 .component {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	width: 100%;
 }
 
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 20;
+	position: sticky;
+	top: 0;
+	z-index: 20;
 }
 
 .main {
-  position: relative;
-  flex-grow: 1;
+	position: relative;
+	flex-grow: 1;
+	// height: calc(100vh - 156px);
+}
+
+.vector {
+	position: fixed;
+	bottom: 3%;
+	right: 3%;
+	z-index: 99999;
+	width: 40px;
+	height: 40px;
 }
 
 .mobile {
-  @include mixin.from(media.$lg) {
-    display: none;
-  }
+	@include mixin.from(media.$lg) {
+		display: none;
+	}
 }
 
 .desktop {
-  @include mixin.until(media.$lg) {
-    // display: none;
-  }
+	@include mixin.until(media.$lg) {
+		// display: none;
+	}
 }

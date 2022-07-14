@@ -2,51 +2,51 @@
 @use "../../helper/style/media";
 
 .component {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  min-height: calc(100vh - var(--header-height) - 1px);
+	min-height: calc(100vh - var(--header-height) - var(--footer-height) - 1px);
 }
 
 .search {
-  height: auto;
+	height: auto;
 }
 
 .fullscreen {
-  flex-grow: 1;
+	flex-grow: 1;
 }
 
 .form {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 14.5rem;
-  grid-column-gap: calc(var(--spacing-unit) * 0.5);
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 14.5rem;
+	grid-column-gap: calc(var(--spacing-unit) * 0.5);
 }
 
 .submit {
-  width: calc(100% - var(--spacing-unit) * 1.5);
-  margin-left: calc(var(--spacing-unit) * 1.5);
+	width: calc(100% - var(--spacing-unit) * 1.5);
+	margin-left: calc(var(--spacing-unit) * 1.5);
 }
 
 .result {
-  flex-grow: 1;
-  display: grid;
-  grid-template-rows: 100%;
+	flex-grow: 1;
+	display: grid;
+	grid-template-rows: 100%;
 
-  padding: calc(var(--spacing-unit) * 6);
+	padding: calc(var(--spacing-unit) * 6);
 }
 
 .list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: calc(var(--spacing-unit) * 3);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: calc(var(--spacing-unit) * 3);
 
-  margin: 0;
-  margin-bottom: calc(var(--spacing-unit) * 2.5);
-  padding: 0;
+	margin: 0;
+	margin-bottom: calc(var(--spacing-unit) * 2.5);
+	padding: 0;
 
-  list-style: none;
+	list-style: none;
 }
 
 .pagination {
-  margin-top: auto;
+	margin-top: auto;
 }

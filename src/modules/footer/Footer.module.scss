@@ -1,0 +1,54 @@
+.footer {
+	padding: 28px 80px;
+	padding-right: 140px;
+
+	display: flex;
+}
+
+.left-wrap {
+	height: 20px;
+	width: fit-content;
+
+	display: flex;
+	column-gap: 40px;
+
+	padding-right: 32.35px;
+	border-right: 1px solid #cccccc;
+
+	.coinGecko-navLink {
+		width: 22px;
+	}
+}
+
+.right-wrap {
+	width: 100%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	.text-navLink-group {
+		display: flex;
+	}
+
+	.text-navLink,
+	.statement {
+		font-family: IBM Plex Mono;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 16px;
+		color: #000000;
+		opacity: 0.8;
+	}
+
+	.text-navLink {
+    height: 20px;
+    
+		text-decoration-line: underline;
+
+		padding: 0 28px;
+
+		border-right: 1px solid #cccccc;
+	}
+}

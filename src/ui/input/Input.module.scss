@@ -86,7 +86,7 @@
 
   &,
   &:hover,
-  #{mixin.$when-focus-rings-enabled} &:focus,
+  &:focus,
   &:active {
     transition-delay: 9999s, 9999s;
     transition-property: background-color, color;
@@ -108,6 +108,9 @@
 .error span {
   position: absolute;
   top: calc(var(--spacing-unit) * 1.5);
-
   color: rgba(var(--error), 1);
+}
+
+.hasTip span {
+  top: calc(var(--spacing-unit) * 3.5) !important;
 }

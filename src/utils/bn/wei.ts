@@ -19,3 +19,5 @@ export const weiToNum = (value: string, decimals = 18, fixed = 6) => {
 export const numToWei = (value: number, decimals = 18, fixed = 6) => {
 	return toWei(value, decimals).toFixed(fixed, 1).toString();
 };
+
+export const unlimitedAuthorization = "0xffffffffffffffffffffffffffffffff";

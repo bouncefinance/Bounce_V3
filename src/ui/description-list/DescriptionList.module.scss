@@ -10,7 +10,17 @@
   margin: 0;
 }
 
-.list {
+.oneColumnList {
+  display: grid;
+  grid-gap: calc(var(--spacing-unit) * 1.5);
+  align-content: center;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.twoColumnList {
   display: grid;
   grid-gap: calc(var(--spacing-unit) * 1.5);
   grid-template-columns: repeat(2, auto);

@@ -1,0 +1,19 @@
+.listBox {
+    flex-grow: 1;
+  display: grid;
+  grid-template-rows: 100%;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px calc(var(--spacing-unit) * 3);
+    margin: 0;
+    margin-bottom: calc(var(--spacing-unit) * 2.5);
+    padding: 0;
+
+    list-style: none;
+  }
+  .pagination {
+    margin-top: auto;
+  }

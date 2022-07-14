@@ -6,16 +6,14 @@ import { pageWithLayout } from "@app/utils/pageInLayout";
 
 const OTCPage = pageWithLayout(
 	() => {
-		return (
-			<NoSsr>
-				<OTC />
-			</NoSsr>
-		);
+		return <OTC />;
 	},
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

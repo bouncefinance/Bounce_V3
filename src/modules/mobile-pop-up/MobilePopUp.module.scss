@@ -1,0 +1,10 @@
+.component {
+	display: grid;
+
+	padding: var(--spacing-unit) calc(var(--spacing-unit) * 7.5) calc(var(--spacing-unit) * 6);
+}
+
+.title {
+	margin: 0;
+	text-align: center;
+}

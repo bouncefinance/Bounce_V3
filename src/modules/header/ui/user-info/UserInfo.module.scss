@@ -1,193 +1,245 @@
 @use "../../../../helper/style/mixin";
 
 .component {
-  position: relative;
+	position: relative;
 
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
 
-  height: 2.75rem;
-  padding-left: 1rem;
-  padding-right: 3.5rem;
+	min-width: 15rem;
+	height: 2.75rem;
+	padding-left: 1rem;
+	padding-right: 3.5rem;
 
-  box-sizing: border-box;
+	box-sizing: border-box;
 
-  border-radius: 2rem;
+	border-radius: 2rem;
 
-  background-color: #f3f3f3;
+	background-color: #f3f3f3;
 }
 
 .balance {
-  font-size: 0.875rem;
-  font-weight: var(--medium);
-  color: rgba(var(--primary-black), 0.8);
+	font-size: 0.875rem;
+	font-weight: var(--medium);
+	color: rgba(var(--primary-black), 0.8);
 }
 
 .address {
-  font-size: 0.875rem;
-  font-weight: var(--medium);
-  color: rgba(var(--primary-black), 0.4);
+	font-size: 0.875rem;
+	font-weight: var(--medium);
+	color: rgba(var(--primary-black), 0.4);
 }
 
 .address::before {
-  position: relative;
-  content: "|";
+	position: relative;
+	content: "|";
 
-  display: inline-block;
-  margin: calc(var(--spacing-unit) * 1.25);
+	display: inline-block;
+	margin: calc(var(--spacing-unit) * 1.25);
 }
 
 .wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
 
-  &:hover .dropdown,
-  #{mixin.$when-focus-rings-enabled} &:focus .dropdown {
-    opacity: 1;
-    visibility: visible;
-  }
+	&:hover .dropdown,
+	&:focus .dropdown {
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 .toggle {
-  display: grid;
-  place-content: center;
+	display: grid;
+	place-content: center;
 
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0;
+	width: 2.75rem;
+	height: 2.75rem;
+	padding: 0;
 
-  color: rgba(var(--primary-white), 1);
+	color: rgba(var(--primary-white), 1);
 
-  border-radius: 50%;
+	border-radius: 50%;
 
-  background: linear-gradient(360deg, #fff 0%, rgba(255, 255, 255, 0) 50%), #000;
+	background: linear-gradient(360deg, #fff 0%, rgba(255, 255, 255, 0) 50%), #000;
 }
 
 .toggle::after {
-  position: absolute;
-  top: 50%;
-  content: "";
+	position: absolute;
+	top: 50%;
+	content: "";
 
-  display: block;
-  height: calc(var(--header-height) + 10px);
+	display: block;
+	height: calc(var(--header-height) + 10px);
 
-  transform: translateY(-50%);
+	transform: translateY(-50%);
 
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .dropdown {
-  position: absolute;
-  top: calc((var(--header-height) - 2.75rem) / 2 + 5px + 2.75rem);
-  right: 0;
-  z-index: 2000;
+	position: absolute;
+	top: calc((var(--header-height) - 2.75rem) / 2 + 5px + 2.75rem);
+	right: 0;
+	z-index: 2000;
 
-  min-width: 15rem;
+	min-width: 15rem;
 
-  box-sizing: border-box;
+	box-sizing: border-box;
 
-  border: 1px solid #e6e6e6;
-  border-radius: 0.5rem;
+	border: 1px solid #e6e6e6;
+	border-radius: 0.5rem;
 
-  background-color: rgba(var(--primary-white), 1);
+	background-color: rgba(var(--primary-white), 1);
 
-  opacity: 0;
+	opacity: 0;
 
-  overflow: hidden;
+	overflow: hidden;
 
-  transition-timing-function: linear;
-  transition-duration: 300ms;
-  transition-property: visibility, opacity;
+	transition-timing-function: linear;
+	transition-duration: 300ms;
+	transition-property: visibility, opacity;
 
-  visibility: hidden;
+	visibility: hidden;
 }
 
 .info {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: flex-start;
-  align-items: center;
-  grid-column-gap: var(--spacing-unit);
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: flex-start;
+	align-items: center;
+	grid-column-gap: var(--spacing-unit);
 
-  padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+	padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
 
-  border-bottom: 1px solid rgba(var(--primary-black), 0.1);
+	border-bottom: 1px solid rgba(var(--primary-black), 0.1);
 }
 
 .info::before {
-  position: relative;
-  content: "";
+	position: relative;
+	content: "";
 
-  display: block;
-  width: 1.75rem;
-  height: 1.75rem;
+	display: block;
+	width: 1.75rem;
+	height: 1.75rem;
 
-  border-radius: 50%;
+	border-radius: 50%;
 
-  background-image: url("./assets/logo.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+	background-image: url("./assets/logo.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .copyAddress {
-  font-size: 1rem;
-  color: rgba(var(--primary-black), 0.5);
+	font-size: 1rem;
+	color: rgba(var(--primary-black), 0.5);
 }
 
 .copyAddress svg {
-  width: 13.5px;
+	width: 13.5px;
 }
 
 .links {
-  border-bottom: 1px solid rgba(var(--primary-black), 0.1);
+	border-bottom: 1px solid rgba(var(--primary-black), 0.1);
 }
 
 .link {
-  width: 100%;
-  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+	width: 100%;
+	padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
 
-  box-sizing: border-box;
+	box-sizing: border-box;
 
-  font-size: 0.875rem;
+	font-size: 0.875rem;
 
-  color: rgba(var(--primary-black), 1);
+	color: rgba(var(--primary-black), 1);
 
-  transition-timing-function: linear;
-  transition-duration: 250ms;
-  transition-property: background-color;
+	transition-timing-function: linear;
+	transition-duration: 250ms;
+	transition-property: background-color;
 
-  &:hover,
-  #{mixin.$when-focus-rings-enabled} &:focus {
-    background-color: #EDEDED;
-  }
+	&:hover,
+	&:focus {
+		background-color: #ededed;
+	}
 }
 
 .logout {
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: flex-start;
-  align-items: center;
+	display: grid;
+	grid-auto-flow: column;
+	justify-content: flex-start;
+	align-items: center;
 
-  width: 100%;
-  padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+	width: 100%;
+	padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
 
-  box-sizing: border-box;
+	box-sizing: border-box;
 
-  font-family: var(--primary-font);
-  font-size: 0.875rem;
-  font-weight: var(--medium);
-  color: rgba(var(--primary-black), 1);
+	font-family: var(--primary-font);
+	font-size: 0.875rem;
+	font-weight: var(--medium);
+	color: rgba(var(--primary-black), 1);
 
-  transition-timing-function: linear;
-  transition-duration: 250ms;
-  transition-property: background-color;
+	transition-timing-function: linear;
+	transition-duration: 250ms;
+	transition-property: background-color;
 
-  &:hover,
-  #{mixin.$when-focus-rings-enabled} &:focus {
-    background-color: #ededed;
-  }
+	&:hover,
+	&:focus {
+		background-color: #ededed;
+	}
+}
+
+// Select Chain Option
+.currentChain {
+	height: 44px;
+	padding: 16.5px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	background-color: #f3f3f3;
+	border-radius: 32px;
+	cursor: pointer;
+	user-select: none;
+	font-size: 0.875rem;
+
+	span {
+		margin-left: 5px;
+		margin-right: 8px;
+	}
+}
+
+.selectOption {
+	position: absolute;
+	right: 30px;
+	top: 70px;
+	background-color: #fff;
+	width: 194px;
+	padding: 8px;
+	box-sizing: border-box;
+
+	li {
+		list-style: none;
+		height: 33.77px;
+		display: flex;
+		align-items: center;
+		font-size: 12px;
+		padding-left: 5px;
+
+		.imgBox {
+			width: 20px;
+			display: flex;
+			justify-content: center;
+			margin-right: 5px;
+		}
+
+		&:hover {
+			background-color: #f3f3f3;
+			border-radius: 6px;
+			cursor: pointer;
+		}
+	}
 }

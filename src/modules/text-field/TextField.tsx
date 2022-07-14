@@ -4,7 +4,7 @@ import { Field } from "react-final-form";
 import { MaybeWithClassName } from "@app/helper/react/types";
 
 import { Input } from "@app/ui/input";
-import { composeValidators, isRequired } from "@app/utils/validation";
+import { composeValidators, isRequired, isNotLongerThan } from "@app/utils/validation";
 
 type TextFieldType = {
 	name: string;
@@ -13,6 +13,7 @@ type TextFieldType = {
 	readOnly?: boolean;
 	initialValue?: any;
 	value?: any;
+	maxLength?: number;
 	step?: string;
 	required?: boolean;
 	validate?: (value: string) => any;
@@ -20,6 +21,8 @@ type TextFieldType = {
 	after?: string | ReactNode;
 	min?: number;
 	max?: number;
+	hasTip?: boolean
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 };
 
 export const TextField: FC<TextFieldType & MaybeWithClassName> = ({
@@ -33,17 +36,22 @@ export const TextField: FC<TextFieldType & MaybeWithClassName> = ({
 	before,
 	after,
 	value,
+	maxLength,
 	step,
 	min,
 	max,
+	hasTip,
+	onChange
 }) => {
 	return (
 		<Field
 			name={name}
 			initialValue={initialValue}
-			validate={
-				required ? (validate ? composeValidators(isRequired, validate) : isRequired) : validate
-			}
+			validate={composeValidators(
+				required && isRequired,
+				maxLength && isNotLongerThan(maxLength),
+				validate
+			)}
 			value={value}
 		>
 			{({ input, meta }) => (
@@ -52,7 +60,10 @@ export const TextField: FC<TextFieldType & MaybeWithClassName> = ({
 					name={input.name}
 					type={input.type}
 					value={input.value}
-					onChange={input.onChange}
+					onChange={(e) => {
+						input.onChange(e)
+						onChange && onChange(e)
+					}}
 					onBlur={input.onBlur}
 					onFocus={input.onFocus}
 					placeholder={placeholder}
@@ -62,6 +73,7 @@ export const TextField: FC<TextFieldType & MaybeWithClassName> = ({
 					after={after}
 					inputProps={{ step, min, max }}
 					error={(meta.error && meta.touched ? meta.error : undefined) || meta.submitError}
+					hasTip={hasTip}
 				/>
 			)}
 		</Field>

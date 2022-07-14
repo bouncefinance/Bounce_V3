@@ -6,7 +6,7 @@
   grid-row-gap: calc(var(--spacing-unit) * 4);
   align-content: start;
 
-  min-height: calc(100vh - var(--header-height));
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
   padding: calc(var(--spacing-unit) * 6.5) 0;
 
   box-sizing: border-box;
@@ -133,7 +133,7 @@
   transition-duration: 250ms;
 
   &:hover,
-  #{mixin.$when-focus-rings-enabled} &:focus {
+  &:focus {
     opacity: 1;
   }
 }
@@ -246,6 +246,19 @@
 .cellId {
   text-decoration: underline;
 }
+.cellAmount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  .cell:first-child {
+    padding-left: 0;
+  }
+  
+  .cell:last-child {
+    padding-right: 0;
+  }
+}
 
 .cellEvent {
   grid-column-gap: 10px;
@@ -305,4 +318,8 @@
 
 .pagination {
   margin-top: auto;
+}
+
+.cellAmount {
+  color: rgba(var(--primary-black), 0.4);
 }

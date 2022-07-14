@@ -11,6 +11,7 @@ export type ShortTokenInfo = {
 	currency: string;
 	img: string | undefined;
 	source: string;
+	address: string;
 };
 
 export type TokenListControl = {

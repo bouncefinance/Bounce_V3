@@ -6,16 +6,14 @@ import { pageWithLayout } from "@app/utils/pageInLayout";
 
 const AuctionPage = pageWithLayout(
 	() => {
-		return (
-			<NoSsr>
-				<Auction />
-			</NoSsr>
-		);
+		return <Auction />;
 	},
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

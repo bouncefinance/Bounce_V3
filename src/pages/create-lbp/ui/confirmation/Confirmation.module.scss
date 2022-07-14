@@ -1,0 +1,92 @@
+.component {
+  display: grid;
+  grid-row-gap: calc(var(--spacing-unit) * 3);
+}
+
+.title {
+  margin: 0;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+
+  .leftInfo {
+    width: 480px;
+
+    .wrapperBox {
+      border: 1px solid rgba(var(--primary-black), 0.1);
+      border-radius: 0.5rem;
+      padding: 10px 30px;
+      box-sizing: border-box;
+      box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.13);
+      margin-bottom: 20px;
+    }
+  }
+
+  .rightOption {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.SerialNo {
+  // width: 400px;
+  box-sizing: border-box;
+
+  .row {
+    display: flex;
+    // justify-content: space-between;
+
+    .no {
+      width: 29px;
+      height: 29px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 29px;
+      font-size: 18px;
+      font-weight: 500;
+      margin-right: 36px;
+      margin-top: 8px;
+    }
+
+    .text {
+      width: 337px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  .arrowImg {
+    text-align: center;
+    margin: 16px 0;
+  }
+}
+
+.approveButtonBox {
+  width: 100%;
+  margin: 12px 0;
+
+  button {
+    width: 360px;
+    margin: 12px;
+    margin-left: 40px;
+  }
+
+  &>div {
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-left: 18px;
+    }
+  }
+}
+
+.aligned {
+  img {
+    width: 14px;
+    height: 14px;
+  }
+}

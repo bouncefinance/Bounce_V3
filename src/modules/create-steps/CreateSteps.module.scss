@@ -3,19 +3,18 @@
 
 .content {
   position: relative;
-
   display: grid;
-
   width: 100%;
   max-width: 41.25rem;
   margin: 0 auto;
   padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 7.5) calc(var(--spacing-unit) * 6);
-
   box-sizing: border-box;
-
   border-radius: 0.5rem;
-
   background-color: rgba(var(--primary-white), 1);
+
+  &.bigScreen{
+    max-width: none;
+  }
 }
 
 .close {
@@ -75,7 +74,7 @@
   cursor: pointer;
 
   &:not(:disabled):not(.active):hover,
-  #{mixin.$when-focus-rings-enabled} &:not(:disabled):not(.active):focus {
+  &:not(:disabled):not(.active):focus {
     color: rgba(var(--ocean-blue), 1);
 
     border-color: rgba(var(--primary-black), 1);

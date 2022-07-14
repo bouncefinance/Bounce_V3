@@ -23,10 +23,11 @@ html {
   --primary-white: 255, 255, 255;
   --primary-black: 0, 0, 0;
   --ocean-blue: 38, 99, 255;
-  --success: 45, 171, 80;
-  --process: 75, 112, 255;
-  --error: 255, 0, 0;
-  --coming: 255, 0, 0;
+  --success: 45, 171, 80;  // green
+  --warning: 255,199,0;  // yellow
+  --process: 75, 112, 255;  // blue
+  --error: 255, 0, 0;  // rec
+  --coming: 255, 0, 0;  // red
 
   //grid
 
@@ -36,14 +37,26 @@ html {
   --gutters: 6rem;
   --grid: 100%;
 
+  // card
+  
+  --governance-card-width: 25rem;
+
   //input
 
   --field-height: 3.75rem;
   --field-padding: 0.5rem 1.25rem;
 
+  //textrea
+
+  --textarea-height: 6rem;
+
   //header
 
   --header-height: 5rem;
+  
+  //footer
+
+  --footer-height: 4.75rem;
 
   //button
 
@@ -58,6 +71,7 @@ html {
   --breakpoint-md: 1024px;
   --breakpoint-lg: 1200px;
   --breakpoint-xl: 1350px;
+  --breakpoint-xxl: 1550px;
 
   @media (min-width: 1024px) {
     --small-gutters: 2.75rem;

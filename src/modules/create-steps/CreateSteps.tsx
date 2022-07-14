@@ -16,6 +16,7 @@ type CreateStepsType = {
 	title: string;
 	type: string;
 	currentStep: number;
+	bigScreen?: boolean
 	moveForward(): void;
 	moveToStep(step: number): void;
 };
@@ -28,13 +29,14 @@ export const CreateSteps: FC<CreateStepsType & MaybeWithClassName & WithChildren
 	currentStep,
 	count,
 	children,
+	bigScreen
 }) => {
 	const buttons = new Array(count).fill("");
 
 	return (
 		<section className={className}>
 			<GutterBox>
-				<div className={styles.content}>
+				<div className={classNames(styles.content, bigScreen ? styles.bigScreen : '')}>
 					<NavLink
 						className={styles.close}
 						variant="text"

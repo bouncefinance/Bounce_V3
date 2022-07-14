@@ -7,16 +7,40 @@ import { MaybeWithClassName } from "@app/helper/react/types";
 
 import { CopyAddress } from "@app/modules/copy-to-clipboard";
 import { Activity } from "@app/pages/account/Activity";
-import { Auction } from "@app/pages/account/Auction";
 import { Otc } from "@app/pages/account/Otc";
 import { NavLink } from "@app/ui/button";
 import { GutterBox } from "@app/ui/gutter-box";
-
 import { Body1 } from "@app/ui/typography";
-
 import styles from "./Account.module.scss";
+import { uid } from "react-uid";
+import { Lbp } from "@app/pages/account/Lbp";
+import Auction from "@app/pages/account/Auction";
 
-export const Account: FC<{ type: "otc" | "auction" | "activity" } & MaybeWithClassName> = ({
+type TabType = "auction" | "otc" | 'lbp' | "activity"
+
+const tabsConfig: {
+	tab: TabType
+	name: string
+	href: string
+}[] = [{
+	tab: 'auction',
+	name: 'My Auction',
+	href: `${ACCOUNT_PATH}`
+}, {
+	tab: 'otc',
+	name: 'My OTC',
+	href: `${ACCOUNT_PATH}/otc`
+}, {
+	tab: 'lbp',
+	name: 'My LBP',
+	href: `${ACCOUNT_PATH}/lbp`
+}, {
+	tab: 'activity',
+	name: 'Activity',
+	href: `${ACCOUNT_PATH}/activity`
+}]
+
+export const Account: FC<{ type: TabType } & MaybeWithClassName> = ({
 	className,
 	type,
 }) => {
@@ -43,7 +67,7 @@ export const Account: FC<{ type: "otc" | "auction" | "activity" } & MaybeWithCla
 						</div>
 					</div>
 					{/* eslint-disable-next-line jsx-a11y/accessible-emoji */}
-					<Body1 Component="div" className={styles.alert}>
+					{/* <Body1 Component="div" className={styles.alert}>
 						🔥 <span className={styles.alertBold}>Bounce app new version is live.</span>
 						<span className={styles.alertText}>
 							If you want to use previous version{" "}
@@ -51,41 +75,30 @@ export const Account: FC<{ type: "otc" | "auction" | "activity" } & MaybeWithCla
 								click here.
 							</a>
 						</span>
-					</Body1>
+					</Body1> */}
 					<div className={styles.tabs}>
-						<NavLink
-							className={styles.tab}
-							activeClassName={styles.active}
-							href={`${ACCOUNT_PATH}`}
-							weight="bold"
-							exact
-						>
-							My Auctions
-						</NavLink>
-						<NavLink
-							className={styles.tab}
-							activeClassName={styles.active}
-							href={`${ACCOUNT_PATH}/otc`}
-							weight="bold"
-						>
-							My OTC
-						</NavLink>
-						<NavLink
-							className={styles.tab}
-							activeClassName={styles.active}
-							href={`${ACCOUNT_PATH}/activity`}
-							weight="bold"
-						>
-							Activity
-						</NavLink>
+						{tabsConfig.map(item => {
+							return <div key={uid(item)}>
+								<NavLink
+									className={styles.tab}
+									activeClassName={styles.active}
+									href={item.href}
+									weight="bold"
+									exact
+								>
+									{item.name}
+								</NavLink>
+							</div>
+						})}
 					</div>
 				</GutterBox>
 			</section>
 			<section className={className}>
 				<GutterBox>
 					{type === "otc" && <Otc />}
-					{type === "auction" && <Auction />}
+					{type === 'lbp' && <Lbp />}
 					{type === "activity" && <Activity />}
+					{type === "auction" && <Auction />}
 				</GutterBox>
 			</section>
 		</div>

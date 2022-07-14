@@ -115,6 +115,7 @@ export const delList = (contract: ContractType, account: string, poolID: number)
 
 	action.estimateGas({
 		poolID,
+		from: account,
 	});
 
 	return action.send({ from: account });

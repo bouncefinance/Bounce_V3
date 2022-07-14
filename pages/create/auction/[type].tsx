@@ -13,17 +13,17 @@ const AuctionPage = pageWithLayout(
 		const { type } = router.query;
 
 		return (
-			<NoSsr>
-				<RequireConnectedWallet>
-					<CreateAuction type={type as POOL_TYPE} />
-				</RequireConnectedWallet>
-			</NoSsr>
+			<RequireConnectedWallet>
+				<CreateAuction type={type as POOL_TYPE} />
+			</RequireConnectedWallet>
 		);
 	},
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

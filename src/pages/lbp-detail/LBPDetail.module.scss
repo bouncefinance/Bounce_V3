@@ -1,0 +1,20 @@
+.timer {
+  margin-top: calc(var(--spacing-unit) * 0.5);
+}
+
+.tokenSold{
+  display: flex;
+  align-items: center;
+}
+
+.blueText {
+  color: #4B70FF;
+}
+
+.navlink {
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: underline;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,1 @@
+export { ProvideProposalDescription } from "./ProvideProposalDescription";

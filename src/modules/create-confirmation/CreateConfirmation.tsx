@@ -9,11 +9,14 @@ import { Spinner } from "@app/ui/spinner";
 import { Heading2 } from "@app/ui/typography";
 
 import styles from "./CreateConfirmation.module.scss";
+import classNames from "classnames";
 
 type CreateConfirmationType = {
 	alert?: ReactNode;
 	moveBack(): void;
 	onComplete(): void;
+	bigScreen?: boolean;
+	canSubmit?: boolean
 };
 
 export const CreateConfirmation: FC<CreateConfirmationType & MaybeWithClassName & WithChildren> = ({
@@ -22,6 +25,8 @@ export const CreateConfirmation: FC<CreateConfirmationType & MaybeWithClassName 
 	moveBack,
 	onComplete,
 	children,
+	bigScreen,
+	canSubmit = true
 }) => {
 	const [loading, setLoading] = useState(false);
 
@@ -35,12 +40,10 @@ export const CreateConfirmation: FC<CreateConfirmationType & MaybeWithClassName 
 		}
 	}, [onComplete]);
 
-	console.log(loading);
-
 	return (
 		<section className={className}>
 			<GutterBox>
-				<div className={styles.content}>
+				<div className={classNames(styles.content, bigScreen && styles.bigScreen)}>
 					<Heading2 Component="h2" className={styles.title}>
 						Creation confirmation
 					</Heading2>
@@ -58,7 +61,7 @@ export const CreateConfirmation: FC<CreateConfirmationType & MaybeWithClassName 
 					<PrimaryButton
 						className={styles.submit}
 						onClick={handleOnComplete}
-						disabled={loading}
+						disabled={loading || !canSubmit}
 						size="large"
 					>
 						{loading ? <Spinner size="small" /> : "Confirm"}

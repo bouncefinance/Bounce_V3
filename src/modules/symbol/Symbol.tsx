@@ -13,5 +13,5 @@ export const Symbol: FC<{ token: string }> = ({ token }) => {
 		return <span>...</span>;
 	}
 
-	return <>{tokenInfo.symbol}</>;
+	return <>{tokenInfo?.symbol?.toUpperCase()}</>;
 };

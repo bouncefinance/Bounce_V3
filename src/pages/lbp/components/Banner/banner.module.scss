@@ -1,0 +1,29 @@
+.title {
+    margin: 0 0 calc(var(--spacing-unit) * 4);
+    text-align: center;
+    font-family: Roboto;
+}
+.banner{
+    width: 100%;
+    background: rgba(var(--primary-white), 0.8);
+    box-shadow: 0px 1px 5px rgba(var(--primary-black), 0.07);
+    border-radius: 19px;
+    padding: 15px 30px 32px;
+    min-height: 100px;
+    box-sizing: border-box;
+}
+.listInfo {
+    font-size: 18px;
+    line-height: 21px;
+    color: rgba(var(--primary-black), 0.6);
+    text-align: center;
+    font-family: Roboto;
+}
+.info {
+    font-size: 18px;
+    line-height: 21px;
+    color: rgba(var(--primary-black), 0.4);
+    text-align: left;
+    margin-top: calc(var(--spacing-unit) * 2);
+    font-family: Roboto;
+}

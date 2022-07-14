@@ -23,7 +23,8 @@ import styles from "./Create.module.scss";
 
 enum OPERATION_TYPE {
 	auction = "auction",
-	otc = "auction",
+	otc = "otc",
+	lbp = "lbp"
 }
 
 export const Create: FC<MaybeWithClassName> = ({ className }) => {
@@ -43,7 +44,7 @@ export const Create: FC<MaybeWithClassName> = ({ className }) => {
 						Create a Pool
 					</Heading1>
 					<Label Component="div" label="Select Creation Type">
-						<RadioGroup count={2}>
+						<RadioGroup count={3}>
 							<RadioField
 								name="createType"
 								label="Auction"
@@ -56,39 +57,42 @@ export const Create: FC<MaybeWithClassName> = ({ className }) => {
 								value="otc"
 								tooltip="(Over-the-Counter)  It  means  off-exchange  trading  is  done  directly  between  two  parties, without the supervision of an exchange."
 							/>
+
+							<RadioField
+								name="createType"
+								label="LBPs"
+								value="lbp"
+								tooltip="LBP Token Launch Auction"
+							/>
 						</RadioGroup>
 					</Label>
 					<FormSpy subscription={{ values: true }}>
-						{(props) => (
-							<>
-								{props.values.createType === OPERATION_TYPE.auction ? (
-									<SelectAuction name="auctionType" />
-								) : (
-									<SelectOTC name="otcType" />
-								)}
+						{(props) => {
+							return <>
+								{
+									props.values.createType === OPERATION_TYPE.auction ? (
+										<SelectAuction name="auctionType" />
+									) : props.values.createType === OPERATION_TYPE.otc ? (
+										<SelectOTC name="otcType" />
+									) : <></>
+								}
 							</>
-						)}
+						}}
 					</FormSpy>
 					<FormSpy subscription={{ values: true }}>
-						{(props) =>
-							props.values.createType === OPERATION_TYPE.auction ? (
-								<PrimaryLink
-									className={styles.button}
-									size="large"
-									href={`/create/auction/${props.values.auctionType}`}
-								>
-									Confirm
-								</PrimaryLink>
-							) : (
-								<PrimaryLink
-									className={styles.button}
-									size="large"
-									href={`/create/otc/${props.values.otcType}`}
-								>
-									Confirm
-								</PrimaryLink>
-							)
-						}
+						{(props) => {
+							let href = '/'
+							if (props.values.createType === OPERATION_TYPE.auction) href = `/create/auction/${props.values.auctionType}`
+							if (props.values.createType === OPERATION_TYPE.otc) href = `/create/otc/${props.values.otcType}`
+							if (props.values.createType === OPERATION_TYPE.lbp) href = `/create/lbp`
+							return <PrimaryLink
+								className={styles.button}
+								size="large"
+								href={href}
+							>
+								Confirm
+							</PrimaryLink>
+						}}
 					</FormSpy>
 				</Form>
 			</GutterBox>

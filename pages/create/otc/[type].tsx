@@ -13,17 +13,17 @@ const OTCPage = pageWithLayout(
 		const { type } = router.query;
 
 		return (
-			<NoSsr>
-				<RequireConnectedWallet>
-					<CreateOTC type={type as OTC_TYPE} />
-				</RequireConnectedWallet>
-			</NoSsr>
+			<RequireConnectedWallet>
+				<CreateOTC type={type as OTC_TYPE} />
+			</RequireConnectedWallet>
 		);
 	},
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

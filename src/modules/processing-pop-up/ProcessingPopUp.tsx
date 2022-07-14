@@ -78,9 +78,11 @@ export const Content: FC<PopUpType> = ({
 						<Button variant="outlined" color="primary-white" size="large" onClick={onClose}>
 							Close
 						</Button>
-						<PrimaryButton size="large" onClick={onTry}>
-							Try again
-						</PrimaryButton>
+						{onTry && (
+							<PrimaryButton size="large" onClick={onTry}>
+								Try again
+							</PrimaryButton>
+						)}
 					</>
 				)}
 			</div>

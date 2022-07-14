@@ -7,6 +7,7 @@ export enum POOL_TYPE {
 	english = "english",
 	dutch = "dutch",
 	lottery = "lottery",
+	lbp = "lbps",
 }
 
 export const POOL_NAME_MAPPING = {
@@ -16,6 +17,7 @@ export const POOL_NAME_MAPPING = {
 	[POOL_TYPE.english]: "English Auction",
 	[POOL_TYPE.dutch]: "Dutch Auction",
 	[POOL_TYPE.lottery]: "Lottery Auction",
+	[POOL_TYPE.lbp]: "lbp Auction",
 };
 
 export const POOL_SHORT_NAME_MAPPING = {
@@ -24,6 +26,7 @@ export const POOL_SHORT_NAME_MAPPING = {
 	[POOL_TYPE.english]: "English",
 	[POOL_TYPE.dutch]: "Dutch",
 	[POOL_TYPE.lottery]: "Lottery",
+	[POOL_TYPE.lbp]: "lbp",
 };
 
 export const POOL_SPECIFIC_NAME_MAPPING = {
@@ -32,6 +35,7 @@ export const POOL_SPECIFIC_NAME_MAPPING = {
 	[POOL_TYPE.english]: "English Pool",
 	[POOL_TYPE.dutch]: "Dutch Pool",
 	[POOL_TYPE.lottery]: "Lottery Pool",
+	[POOL_TYPE.lbp]: "Lbp Pool",
 };
 
 export const POOL_ADDRESS_MAPPING = {

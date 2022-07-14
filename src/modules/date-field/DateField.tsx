@@ -21,6 +21,7 @@ type DateFieldType = {
 	min?: string;
 	max?: string;
 	selection?: DateInterval;
+	nowTime?: boolean
 };
 
 export const DateField: FC<DateFieldType & MaybeWithClassName> = ({
@@ -37,29 +38,33 @@ export const DateField: FC<DateFieldType & MaybeWithClassName> = ({
 	min,
 	max,
 	selection,
+	nowTime = false
 }) => {
 	return (
 		<Field name={name} value={value} validate={required ? isDateRequired : undefined}>
-			{({ input, meta }) => (
-				<DatePicker
-					className={className}
-					name={input.name}
-					initialValue={input.value}
-					onChange={input.onChange}
-					onBlur={input.onBlur}
-					placeholder={placeholder}
-					labels={labels}
-					quickNav={quickNav}
-					dropdownWidth={dropdownWidth}
-					dropdownPosition={dropdownPosition}
-					min={min}
-					max={max}
-					selection={selection}
-					readOnly={readOnly}
-					required={required}
-					error={(meta.error && meta.touched ? meta.error : undefined) || meta.submitError}
-				/>
-			)}
+			{({ input, meta }) => {
+				return (
+					<DatePicker
+						className={className}
+						name={input.name}
+						initialValue={input.value}
+						onChange={input.onChange}
+						onBlur={input.onBlur}
+						placeholder={placeholder}
+						labels={labels}
+						quickNav={quickNav}
+						dropdownWidth={dropdownWidth}
+						dropdownPosition={dropdownPosition}
+						min={min}
+						max={max}
+						selection={selection}
+						readOnly={readOnly}
+						required={required}
+						error={(meta.error && meta.touched ? meta.error : undefined) || meta.submitError}
+						nowTime={nowTime}
+					/>
+				)
+			}}
 		</Field>
 	);
 };

@@ -7,17 +7,17 @@ import { pageWithLayout } from "@app/utils/pageInLayout";
 const ActivityPage = pageWithLayout(
 	() => {
 		return (
-			<NoSsr>
-				<RequireConnectedWallet>
-					<Account type="activity" />
-				</RequireConnectedWallet>
-			</NoSsr>
+			<RequireConnectedWallet>
+				<Account type="activity" />
+			</RequireConnectedWallet>
 		);
 	},
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

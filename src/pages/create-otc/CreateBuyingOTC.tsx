@@ -185,7 +185,7 @@ export const CreateBuyingOTC: FC<MaybeWithClassName> = () => {
 				<CreateFlowForOtc type={type} steps={BUYING_STEPS} onComplete={onComplete} />
 			</div>
 			{popUp.defined ? (
-				<ProcessingPopUp
+				<ProcessingPopUp 
 					title={TITLE[operation]}
 					text={CONTENT[operation]}
 					onSuccess={() => {

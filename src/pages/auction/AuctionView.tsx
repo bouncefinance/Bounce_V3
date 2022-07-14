@@ -21,7 +21,7 @@ import { PopupTeleporterTarget } from "@app/ui/pop-up-container";
 
 type AuctionType = {
 	result?: DisplayPoolInfoType[];
-	initialSearchState: any;
+	initialSearchState?: any;
 	numberOfPages: number;
 	currentPage: number;
 	onBack?(): void;
@@ -48,7 +48,7 @@ export const AuctionView: FC<AuctionType & MaybeWithClassName> = ({
 	currentPage,
 	onBack,
 	onNext,
-	initialSearchState,
+	initialSearchState = {},
 }) => {
 	return (
 		<>
@@ -92,20 +92,8 @@ export const AuctionView: FC<AuctionType & MaybeWithClassName> = ({
 								<>
 									<ul className={styles.list}>
 										{result.map((auction) => (
-											<li key={uid(auction)}>
-												<Card
-													href={auction.href}
-													id={auction.id}
-													status={auction.status}
-													name={auction.name}
-													address={auction.address}
-													type={auction.type}
-													token={auction.token}
-													total={auction.total}
-													currency={auction.currency}
-													price={auction.price}
-													fill={auction.fill}
-												/>
+											<li key={uid(auction)} className="animate__animated animate__flipInY">
+												<Card {...auction} />
 											</li>
 										))}
 									</ul>

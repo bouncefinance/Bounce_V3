@@ -1,8 +1,10 @@
 import { useWeb3React } from "@web3-react/core";
-import { useDebugValue, useMemo } from "react";
+import { useDebugValue, useEffect, useMemo, useState } from "react";
 import Web3 from "web3";
 
 import { WEB3_NETWORKS } from "@app/web3/networks/const";
+
+declare const window: any;
 
 export const useWeb3Provider = () => {
 	const { active, library } = useWeb3React();
@@ -17,7 +19,8 @@ export const useWeb3 = (): Web3 => {
 };
 
 export const useChainId = (): WEB3_NETWORKS => {
-	const { chainId = WEB3_NETWORKS.MAIN } = useWeb3React();
+	const { chainId = WEB3_NETWORKS.ETH } = useWeb3React();
+
 	useDebugValue(chainId);
 
 	return chainId;

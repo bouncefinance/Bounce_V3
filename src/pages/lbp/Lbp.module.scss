@@ -1,0 +1,137 @@
+.container {
+    display: grid;
+    grid-row-gap: calc(var(--spacing-unit) * 4);
+    align-content: start;
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    padding: calc(var(--spacing-unit) * 4.5) 0 calc(var(--spacing-unit) * 6.5);
+    box-sizing: border-box;
+}
+
+
+.listTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: calc(var(--spacing-unit) * 6);
+}
+
+.launch {
+    font-size: calc(var(--spacing-unit) * 2.75);
+    font-weight: var(--bold);
+    color: #1F191B;
+}
+
+.tabs {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    grid-column-gap: 5rem;
+    width: 100%;
+    margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.tab {
+    position: relative;
+    padding: 0.875rem 0;
+    font-size: 1rem;
+    color: rgba(var(--primary-black), 1);
+    opacity: 0.3;
+    transition-timing-function: linear;
+    transition-property: opacity;
+    transition-duration: 250ms;
+    padding: 0 0 6px;
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+    }
+}
+
+.liveHover {
+
+    &:hover,
+    &:focus {
+        color: #2DAB50;
+    }
+}
+
+.upcomingHover {
+
+    &:hover,
+    &:focus {
+        color: #4B70FF;
+    }
+}
+
+.closedHover {
+
+    &:hover,
+    &:focus {
+        color: #FF0000;
+    }
+}
+
+.active {
+    opacity: 1;
+}
+
+.active::before {
+    position: absolute;
+    bottom: -1px;
+    left: calc(50% - 16px);
+    right: 0;
+    content: "";
+    display: block;
+    width: calc(var(--spacing-unit) * 4);
+    height: 2px;
+    background-color: rgba(var(--primary-black), 1);
+    border-radius: 31px;
+}
+
+.liveActive {
+    color: #2DAB50;
+
+    &::before {
+        background-color: #2DAB50;
+    }
+
+    &:hover {
+        color: #2DAB50;
+    }
+}
+
+.upcomingActive {
+    color: #4B70FF;
+
+    &::before {
+        background-color: #4B70FF;
+    }
+
+    &:hover {
+        color: #4B70FF;
+    }
+}
+
+.closedActive {
+    color: #FF0000;
+
+    &::before {
+        background-color: #FF0000;
+    }
+
+    &:hover {
+        color: #FF0000;
+    }
+}
+
+
+.auctionListBox {
+    background: rgba(var(--primary-white), 0.8);
+    box-shadow: 0px 1px 5px rgba(var(--primary-black), 0.07);
+    border-radius: 19px;
+    width: 100%;
+    min-height: 300px;
+    margin-top: calc(var(--spacing-unit) * 2.25);
+    padding: calc(var(--spacing-unit) * 2.25) calc(var(--spacing-unit) * 3.75) calc(var(--spacing-unit) * 6.25);
+    box-sizing: border-box;
+}

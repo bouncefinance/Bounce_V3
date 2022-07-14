@@ -18,3 +18,26 @@
 .submit {
   margin-top: calc(var(--spacing-unit) * 4.5);
 }
+
+.tokenFromLogoWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .tokenFromLogoInput{
+    width: 480px;
+  }
+
+  .tokenFromPre{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img{
+      width: 24px;
+      height: 24px;
+    }
+    // border: 1px solid #ccc;
+  }
+}

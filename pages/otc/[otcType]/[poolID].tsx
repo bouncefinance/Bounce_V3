@@ -14,17 +14,17 @@ const OtcViewPage = pageWithLayout(
 		} = useRouter();
 
 		return (
-			<NoSsr>
-				<RequireConnectedWallet>
-					<OTCDetail poolID={+poolID} otcType={otcType as OTC_TYPE} />
-				</RequireConnectedWallet>
-			</NoSsr>
+			<RequireConnectedWallet>
+				<OTCDetail poolID={+poolID} otcType={otcType as OTC_TYPE} />
+			</RequireConnectedWallet>
 		);
 	},
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

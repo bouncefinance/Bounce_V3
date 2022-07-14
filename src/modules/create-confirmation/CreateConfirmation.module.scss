@@ -16,6 +16,20 @@
   border-radius: 0.5rem;
 
   background-color: rgba(var(--primary-white), 1);
+  
+  &.bigScreen{
+    max-width: 1200px;
+    width: 1200px;
+
+    .submit{
+      width: 540px;
+      margin: 0 auto;
+    }
+    
+    .body{
+      border: none;
+    }
+  }
 }
 
 .close {

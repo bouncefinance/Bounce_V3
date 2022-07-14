@@ -27,14 +27,14 @@ export function contenthashToUri(contenthash: string): string {
 
 	switch (codec) {
 		case "ipfs-ns": {
-			const data = rmPrefix(buff as Buffer);
+			const data = rmPrefix(buff as Buffer) as any;
 			const cid = new CID(data);
 
 			return `ipfs://${toB58String(cid.multihash)}`;
 		}
 
 		case "ipns-ns": {
-			const data = rmPrefix(buff as Buffer);
+			const data = rmPrefix(buff as Buffer) as any;
 			const cid = new CID(data);
 			const multihash = decode(cid.multihash);
 

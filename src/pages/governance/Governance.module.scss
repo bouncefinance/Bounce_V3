@@ -1,0 +1,117 @@
+@use "../../helper/style/mixin";
+@use "../../helper/style/media";
+
+.component {
+	display: flex;
+	flex-direction: column;
+
+	min-height: calc(100vh - var(--header-height) - var(--footer-height) - 1px);
+	min-width: 45rem;
+}
+
+.banner {
+	width: calc(100% - 2 * 14rem);
+	padding: 1rem 14rem 0 14rem;
+	height: 21rem;
+	background-color: black;
+
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.fakeTab {
+		width: 100%;
+		border-bottom: 1px solid rgba(var(--primary-white), 0.2);
+		display: flex;
+		justify-content: space-between;
+		margin: 0 auto;
+
+		.strVoting {
+			color: rgba(var(--primary-white), 1);
+		}
+
+		.strCreateProposal {
+			color: rgba(var(--primary-white), 1);
+		}
+	}
+
+	.bannerText {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin: 3.4rem auto auto auto;
+		width: max-content;
+		position: relative;
+
+		:before {
+			content: "";
+			position: absolute;
+			top: -0.25rem;
+			left: -6.25rem;
+			width: 1px;
+			height: 4.75rem;
+			background: rgba(var(--primary-white), 0.5);
+		}
+
+		:after {
+			content: "";
+			position: absolute;
+			top: -0.25rem;
+			right: -6.25rem;
+			width: 1px;
+			height: 4.75rem;
+			background: rgba(var(--primary-white), 0.5);
+		}
+
+		.strVotePower {
+			color: rgba(var(--primary-white), 0.6);
+		}
+
+		.line2 {
+			display: flex;
+			align-items: baseline;
+			.powerAmount {
+				color: rgba(var(--primary-white), 1);
+			}
+
+			.strVotes {
+				color: rgba(var(--primary-white), 1);
+			}
+		}
+	}
+}
+
+.result {
+	flex-grow: 1;
+	display: grid;
+	grid-template-rows: 100%;
+
+	padding: calc(var(--spacing-unit) * 6);
+	padding-top: calc(var(--spacing-unit) * 31);
+}
+
+.list {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(var(--governance-card-width), 1fr));
+	grid-gap: calc(var(--spacing-unit) * 3);
+
+	margin: 0;
+	margin-bottom: calc(var(--spacing-unit) * 2.5);
+	padding: 0;
+
+	list-style: none;
+
+  @include mixin.between(media.$lg, media.$xxl) {
+		grid-template-columns: repeat(2, minmax(var(--governance-card-width), 1fr));
+  }
+  
+	@include mixin.until(media.$lg) {
+		grid-template-columns: repeat(1, minmax(var(--governance-card-width), 1fr));
+  }
+}
+
+.pagination {
+	margin-top: auto;
+}

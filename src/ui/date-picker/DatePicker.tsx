@@ -70,6 +70,7 @@ type DatePickerType = {
 	readOnly?: boolean;
 	required?: boolean;
 	error?: string;
+	nowTime?: boolean;
 };
 
 const testMinMax = (value: string, min?: number, max?: number) =>
@@ -133,6 +134,7 @@ export const DatePicker: FC<DatePickerType & MaybeWithClassName> = ({
 	readOnly,
 	required,
 	error,
+	nowTime
 }) => {
 	const [calendarRef, setCalendarRef] = useState<HTMLElement | null>(null);
 
@@ -285,8 +287,8 @@ export const DatePicker: FC<DatePickerType & MaybeWithClassName> = ({
 	const setToday = () => {
 		const newDate = new Date();
 		setCalendarValue(newDate);
-
-		const shiftedDate = new Date(+newDate + /* +1h */ 60 * 60 * 1000);
+		const tempTime = nowTime ? +newDate : +newDate + /* +1h */ 60 * 60 * 1000
+		const shiftedDate = new Date(tempTime);
 		setHours(shiftedDate.getHours());
 		setMinutes(shiftedDate.getMinutes());
 	};
@@ -464,7 +466,7 @@ export const DatePicker: FC<DatePickerType & MaybeWithClassName> = ({
 									color="primary-black"
 									variant="contained"
 								>
-									Close
+									Set
 								</Button>
 							</div>
 						</div>

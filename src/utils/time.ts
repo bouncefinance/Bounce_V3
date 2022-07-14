@@ -6,6 +6,12 @@ export const getDeltaTime = (time: number, to = Date.now()) => {
 	return delta > 0 ? delta : 0;
 };
 
+export const getKeepTime = (time: number, to = Date.now()) => {
+	const delta = /*14*24*60*60*1000 -*/ (to - time) / 1000;
+
+	return delta > 0 ? delta : 0;
+};
+
 export const getIsOpen = (time: number) => {
 	const nowTime = new Date();
 	const openTime = new Date(time);

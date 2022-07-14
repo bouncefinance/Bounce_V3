@@ -6,16 +6,16 @@ import { pageWithLayout } from "@app/utils/pageInLayout";
 
 const CreatePage = pageWithLayout(
 	() => (
-		<NoSsr>
-			<RequireConnectedWallet>
-				<Create />
-			</RequireConnectedWallet>
-		</NoSsr>
+		<RequireConnectedWallet>
+			<Create />
+		</RequireConnectedWallet>
 	),
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

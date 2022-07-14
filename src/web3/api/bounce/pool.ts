@@ -46,7 +46,7 @@ export const getAllowance = async (
 
 export type AuctionPoolType = {
 	name: string;
-	creator: string;
+	creator?: string;
 	token0: string;
 	token1: string;
 	amountTotal0: string;
@@ -54,9 +54,9 @@ export type AuctionPoolType = {
 	openAt: number;
 	closeAt: number;
 	claimAt: number;
-	enableWhiteList: boolean;
 	maxAmount1PerWallet: string;
 	onlyBot: boolean;
+	enableWhiteList: boolean;
 };
 
 export const getPools = async (
@@ -122,13 +122,16 @@ export const createAuctionPool = (
 	contract: ContractType,
 	account: string,
 	data: AuctionPoolType,
-	whiteList: string[] | undefined
+	whiteList: string[] | undefined,
+	isPayable: boolean
 ) => {
 	const action = contract.methods.create(data, whiteList !== undefined ? whiteList : []);
 
 	action.estimateGas();
 
-	return action.send({ from: account });
+	const sendParams = isPayable ? { from: account, value: data.amountTotal0 } : { from: account };
+
+	return action.send(sendParams);
 };
 
 export const swapContracts = (

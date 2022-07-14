@@ -4,15 +4,13 @@ import { Farm } from "../src/pages/farm";
 import { pageWithLayout } from "../src/utils/pageInLayout";
 
 const Index = pageWithLayout(
-	() => (
-		<NoSsr>
-			<Farm />
-		</NoSsr>
-	),
+	() => <Farm />,
 	({ children }) => (
-		<Layout title="" description="">
-			{children}
-		</Layout>
+		<NoSsr>
+			<Layout title="" description="">
+				{children}
+			</Layout>
+		</NoSsr>
 	)
 );
 

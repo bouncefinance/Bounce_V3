@@ -1,0 +1,263 @@
+@use "../../helper/style/mixin";
+@use "../../helper/style/media";
+
+.extensionWrapper {
+    width: 100%;
+    min-height: 132px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 46px 90px;
+    box-sizing: border-box;
+}
+
+.tabList {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 0;
+
+    li {
+        margin-right: 40px;
+        font-weight: bold;
+        font-size: 18px;
+        font-family: Roboto;
+        color: rgba(0, 0, 0, 0.3);
+        padding-bottom: 13px;
+        cursor: pointer;
+
+        &.active {
+            color: #000;
+            border-bottom: 2px solid #000;
+        }
+    }
+}
+
+.tokenInfo {
+    margin-left: 40px;
+
+    .tokenInfoTop {
+        display: flex;
+        margin-top: 25px;
+        align-items: center;
+        font-family: Roboto;
+
+        img {
+            width: 28px;
+            height: 28px;
+        }
+
+        h4 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            margin-left: 10px;
+        }
+
+        div {
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 30px;
+            border: 1px solid #000;
+            padding: 7px;
+            min-width: 50px;
+            text-align: center;
+            margin-left: 15px;
+        }
+    }
+    .copyAddress {
+        font-size: 1rem;
+    }
+    
+    .copyAddress svg {
+        width: 20px;
+        color: #C4C4C4;
+        margin-left: 46px;
+    }
+
+    .tokenInfoBottom {
+        margin-top: 13px;
+
+        span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        img {
+            margin-left: 40px;
+            cursor: pointer;
+        }
+    }
+}
+
+.infoContent {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+
+    &>div {
+        background: #FAFAFA;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        padding: 23px 73px 46px 38px;
+    }
+
+    .infoContentLeft {
+        width: 58.5%;
+        box-sizing: border-box;
+
+    }
+
+    .infoContentRight {
+        width: 38.5%;
+        box-sizing: border-box;
+    }
+    .textNavLink {
+        text-decoration-line: underline;
+        color: rgba(0, 0, 0, 0.6);
+        display: inline;
+    }
+
+    h4 {
+        font-family: Roboto;
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    h5 {
+        margin: 0;
+        margin-top: 18px;
+        margin-bottom: 6px;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    p {
+        margin: 0;
+        font-family: Helvetica Neue;
+        color: rgba(31, 25, 27, .6);
+        line-height: 1.4em;
+    }
+}
+
+
+.centerWrapper {
+    width: 580px;
+    margin: 30px auto;
+    margin-top: 66px;
+
+    h4 {
+        text-align: center;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 400;
+        font-family: Helvetica Neue;
+        color: rgba(31, 25, 27, .6);
+    }
+}
+
+.poolCard {
+    width: 100%;
+    background: #FAFAFA;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+
+    h5 {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 0;
+        line-height: 1.4em;
+        margin-bottom: 10px;
+    }
+}
+
+.poolCardRight {
+    display: flex;
+    align-items: center;
+
+    .withdrawBtn {
+        width: 134px;
+        height: 44px;
+        border-radius: 30px;
+    }
+}
+
+.SwitchBtn {
+    .MuiSwitch-colorPrimary.Mui-checked {
+        color: #000 !important;
+    }
+}
+
+.activityInfo {
+    .head {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: var(--spacing-unit);
+
+        height: 2.75rem;
+
+        border-radius: 0.5rem;
+
+        background-color: #F3F3F3;
+    }
+
+    .cell {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        align-content: center;
+    }
+
+    .cell:first-child {
+        padding-left: calc(var(--spacing-unit) * 2.5);
+    }
+
+    .cell:last-child {
+        padding-right: calc(var(--spacing-unit) * 2.5);
+    }
+
+    .body {
+        margin: 0;
+        margin-bottom: calc(var(--spacing-unit) * 2.5);
+        padding: 0;
+
+        list-style: none;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-column-gap: var(--spacing-unit);
+
+        height: 5rem;
+
+        border-bottom: 1px solid rgba(var(--primary-black), 0.1);
+    }
+
+    .cellAmount {
+        color: rgba(var(--primary-black), 0.4);
+    }
+
+    .amount {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-content: center;
+    }
+}

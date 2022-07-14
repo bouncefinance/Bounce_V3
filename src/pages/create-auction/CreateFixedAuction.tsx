@@ -14,6 +14,7 @@ import { defineFlow } from "@app/modules/flow/definition";
 import { ProcessingPopUp } from "@app/modules/processing-pop-up";
 import { isLessThan } from "@app/utils/bn";
 import { numToWei } from "@app/utils/bn/wei";
+import { isEqualZero } from "@app/utils/validation";
 import { getTokenContract } from "@app/web3/api/bounce/erc";
 import {
 	approveAuctionPool,
@@ -101,28 +102,36 @@ export const CreateFixedAuction: FC<MaybeWithClassName> = () => {
 			const limit = data.limit ? numToWei(data.limit, tokenTo.decimals, 0) : "0";
 
 			try {
-				const tokenContract = getTokenContract(provider, tokenFrom.address);
+				let isPayable = false;
 
-				const allowance = await getAllowance(
-					tokenContract,
-					POOL_ADDRESS_MAPPING[type],
-					chainId,
-					account
-				);
+				if (!isEqualZero(tokenFrom.address)) {
+					// 如果不是 ETH 则需要先授权
+					isPayable = false;
 
-				if (isLessThan(allowance, fromAmount)) {
-					const result = await approveAuctionPool(
+					const tokenContract = getTokenContract(provider, tokenFrom.address);
+					// 获取授权额度
+					const allowance = await getAllowance(
 						tokenContract,
 						POOL_ADDRESS_MAPPING[type],
 						chainId,
-						account,
-						fromAmount
+						account
 					);
 
-					if (!result.status) {
-						setOperation(OPERATION.error);
+					// 判断额度是否足够
+					if (isLessThan(allowance, fromAmount)) {
+						const result = await approveAuctionPool(
+							tokenContract,
+							POOL_ADDRESS_MAPPING[type],
+							chainId,
+							account,
+							fromAmount
+						);
 
-						return;
+						if (!result.status) {
+							setOperation(OPERATION.error);
+
+							return;
+						}
 					}
 				}
 
@@ -133,7 +142,7 @@ export const CreateFixedAuction: FC<MaybeWithClassName> = () => {
 					account,
 					{
 						name: data.poolName,
-						creator: account,
+						// creator: account,
 						token0: tokenFrom.address,
 						token1: tokenTo.address,
 						amountTotal0: fromAmount,
@@ -141,11 +150,12 @@ export const CreateFixedAuction: FC<MaybeWithClassName> = () => {
 						openAt: +data.startPool / 1000,
 						closeAt: +data.endPool / 1000,
 						claimAt: +data.claimStart / 1000,
-						enableWhiteList: data.whitelist,
 						maxAmount1PerWallet: limit,
 						onlyBot: false,
+						enableWhiteList: data.whitelist,
 					},
-					data.whiteListList
+					data.whiteListList,
+					isPayable
 				)
 					.on("transactionHash", (h) => {
 						console.log("hash", h);

@@ -1,0 +1,1 @@
+export { LBPDetail } from "./LBPDetail";

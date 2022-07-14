@@ -40,7 +40,8 @@
   margin: 0;
 
   box-sizing: border-box;
-
+  cursor: pointer;
+  
   font-family: var(--primary-font);
   font-size: 0.875rem;
   color: rgba(var(--primary-white), 1);
@@ -53,4 +54,10 @@
 
 .submit {
   margin-top: calc(var(--spacing-unit) * 0.5);
+}
+
+.alert {
+  display: grid;
+
+  margin-bottom: calc(var(--spacing-unit) * 4);
 }
